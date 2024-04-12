@@ -1,0 +1,30 @@
+/*Colores a usar  */
+:root {
+    --primario: #026a04;
+    --secundario: #0CA789;
+    --tercero: #52c234;
+    --cuarto: #0f9b0f;
+}
+
+.bg-verde {
+    background: var(--primario) !important;
+}
+
+.bg-verde_menta{
+    background: var(--secundario) !important;
+}
+
+.bg-nav{
+    background: var(--tercero) !important;
+}
+
+.bg-boton{
+    background: var(--tercero) !important;
+}
+
+.bg-fondo{
+    background: #52c234;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #061700, #52c234);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #061700, #52c234); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}

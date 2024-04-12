@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="bg-fondo">
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <h6 class="fw-bold text-center py-3">Nueva Publicacion</h6>
+            <form class ="col py-2">
+                <div class="col px-3">
+
+                    <input type="text" class="form-control" placeholder="Titulo" aria-label="Titulo">
+
+                    <div class="input-group mt-3" >
+                      <div class="input-group-text">Lps</div>
+                      <input type="number" class="form-control" placeholder="Precio" aria-label="Precio" />
+                    </div>
+
+                    <input type="number" class="form-control mt-3" placeholder="Cantidad" aria-label="Cantidad" />
+
+                    <div class="input-group mt-3">
+                        <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                        <select class="form-select" id="inputGroupSelect01">
+                          <option selected>Selecciona una opcion</option>
+                          <option value="1">Nuevo</option>
+                          <option value="2">Dañado</option>
+                          <option value="3">Usado</option>
+                        </select>
+                      </div>
+
+                    <div class="mb-3 mt-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+
+                </div>
+                
+                    <button type="submit" class="btn bg-verde_menta text-light vstack mx-auto" type="submit">Publicar</button>
+               
+            </form>
+        </div>
+    </div>
+    <div class="col-md-8 ms-auto">
+        <div class="card w-75 h-75">
+            <div class="container-fluid">
+                <img class="d-block h-75" src="/media/logo.png" alt="Algo salio mal">
+                <div class="position-absolute top-100 w-100">
+                    <input class="form-control mt-3" type="file" id="formFileMultiple" multiple>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}

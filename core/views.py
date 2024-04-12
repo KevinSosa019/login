@@ -8,9 +8,21 @@ from django.contrib.auth import authenticate, login
 def home(request):
     return render(request, 'core/home.html')
 
-@login_required
+def nosotros(request):
+    return render(request, 'core/nosotros.html')
+
+def perfil(request):
+    return render(request, 'core/perfil.html')
+
+def publicar(request):
+    return render(request, 'Venta/PublicarVenta.html')
+
+def Ventas_Publicadas(request):
+    return render(request, 'Venta/VentasPublicadas.html')
+
+"""@login_required
 def products(request):
-    return render(request, 'core/products.html')
+    return render(request, 'core/products.html')"""
 
 def exit(request):
     logout(request)

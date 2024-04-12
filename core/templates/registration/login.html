@@ -4,22 +4,20 @@
 
 {% load crispy_forms_tags %}
 
-<h3>LOGIN</h3>
+<div class="bg-fondo pantalla">
+  <h3 class="text-light text-center py-3">Indentificate</h3>
 
-<br>
+  <form class= "py-3" action="" method="post">
+      {% csrf_token %}
 
-<form action="" method="post">
-    {% csrf_token %}
-
-    <div class="card mx-auto" style="width: 30rem;">
-      <div class="card-body">
-        <h5 class="card-title">Ingrese sus Credenciales</h5>
-        {{ form | crispy }}
-        <a href={% url 'home' %} class="card-link">Inicio</a>
-        <a href={% url 'register' %} class="card-link">Registrarse</a>
-        <button class="btn btn-sm btn-primary float-end" type="submit">Iniciar Sesión</button>
+      <div class="card mx-auto login">
+        <div class="card-body">
+          <h5 class="card-title">Ingrese sus Credenciales</h5>
+          {{ form | crispy }}
+          <button class="btn btn-sm bg-verde_menta float-end text-light" type="submit">Iniciar Sesión</button>
+        </div>
       </div>
-    </div>
-</form>
+  </form>
+</div>
 
 {% endblock %}
