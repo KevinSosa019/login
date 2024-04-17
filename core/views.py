@@ -5,6 +5,8 @@ from .forms import CustomUserCreationForm
 from django.contrib.auth import authenticate, login
 from .models import Publicacion
 from django.contrib import messages
+from datetime import datetime
+
 
 # Create your views here.
 def home(request):
@@ -55,11 +57,27 @@ def publicar(request):
 #2da
 def registrarPublicacion(request):
     codigo = request.POST['txtCodigo']
-    nombre = request.POST['txtNombre']
-    creditos = request.POST['numCreditos']
+    titulo = request.POST['txtTitulo']
+    precio = request.POST['numPrecio']
+    
+    cantidad = request.POST['numCantidad']
+    unidad = request.POST['txtUnidad']
+    categoria = request.POST['txtCategoria']
+  #  fechaCosecha = request.POST['DateFechaCosecha'] 
+    descripcion = request.POST['txtDescripcion']
+    
 
     publicacion = Publicacion.objects.create(
-        codigo=codigo, nombre=nombre, creditos=creditos)
+        codigo=codigo, 
+        titulo=titulo, 
+        precio=precio,
+        cantidad=cantidad,
+        unidad=unidad,
+        categoria=categoria,
+   #     fechaCosecha=fechaCosecha,
+        descripcion=descripcion   )
+    
+  
     messages.success(request, 'Publicacion registrada!')
     return redirect('/publicar')
 
@@ -70,12 +88,22 @@ def edicionPublicacion(request, codigo):
 
 def editarPublicacion(request):
     codigo = request.POST['txtCodigo']
-    nombre = request.POST['txtNombre']
-    creditos = request.POST['numCreditos']
+    titulo = request.POST['txtTitulo']
+    precio = request.POST['numPrecio']
+    cantidad = request.POST['numCantidad']
+    unidad = request.POST['txtUnidad']
+    categoria = request.POST['txtCategoria']
+ #   fechaCosecha = request.POST['DateFechaCosecha']
+    descripcion = request.POST['txtDescripcion']
 
     publicacion = Publicacion.objects.get(codigo=codigo)
-    publicacion.nombre = nombre
-    publicacion.creditos = creditos
+    publicacion.titulo = titulo
+    publicacion.precio = precio
+    publicacion.cantidad = cantidad
+    publicacion.unidad = unidad
+    publicacion.categoria = categoria
+   # publicacion.fechaCosecha = fechaCosecha
+    publicacion.descripcion = descripcion
     publicacion.save()
 
     messages.success(request, 'Publicacion actualizada!')

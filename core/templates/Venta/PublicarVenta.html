@@ -25,21 +25,57 @@
         <div class="card">
             <div class="card-body">
                 <form action="/registrarPublicacion/" method="POST">{% csrf_token %}
+                   
                     <div class="form-group">
                         <input type="text" id="txtCodigo" name="txtCodigo" class="form-control" placeholder="Código"
                             minlength="6" maxlength="6" required>
                     </div>
+                    
                     <div class="form-group">
-                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre"
+                        <input type="text" id="txtTitulo" name="txtTitulo" class="form-control" placeholder="Titulo"
                             maxlength="50" required>
                     </div>
+                  
                     <div class="form-group">
-                        <input type="text" id="numCreditos" name="numCreditos" class="form-control" min="1" max="9"
+                        <input type="text" id="numPrecio" name="numPrecio" class="form-control" min="1" max="9"
                             value="1" required>
                     </div>
+
+                    <div class="form-group">
+                        <input type="text" id="numCantidad" name="numCantidad" class="form-control" min="1" max="9"
+                            value="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" id="txtUnidad" name="txtUnidad" class="form-control" placeholder="Unidad"
+                            maxlength="50" required>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" id="txtCategoria" name="txtCategoria" class="form-control" placeholder="Categoria"
+                            maxlength="50" required>
+                    </div>
+
+                    
+                    
+                    <!--<div class="input-group mt-3" >
+                        <div class="input-group-text">Fecha de Cosecha</div>
+                        <input type="date" id="DateFechaCosecha" name="DateFechaCosecha" class="form-control" >
+                    </div>-->
+
+                    
+                    
+
+
+                    <div class="form-group">
+                        <input type="text" id="txtDescripcion" name="txtDescripcion" class="form-control" placeholder="Descripcion"
+                            maxlength="50" required>
+                    </div>
+
                     <div class="form-group">
                         <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
                     </div>
+                    
                 </form>
             </div>
         </div>
@@ -52,8 +88,14 @@
                     <tr>
                         <th>#</th>
                         <th>Código</th>
-                        <th>Nombre</th>
-                        <th>Créditos</th>
+                        <th>Titulo</th>
+                        <th>Cantidad</th>
+                        <th>Unidad</th>
+                        <th>Categoria</th>
+<!--                     <th>FechaCosecha</th>
+-->
+                        <th>Descripcion</th>
+
                         <th colspan="2">Opciones</th>
                     </tr>
                 </thead>
@@ -62,8 +104,15 @@
                     <tr>
                         <td>{{forloop.counter}}</td>
                         <td>{{c.codigo}}</td>
-                        <td>{{c.nombre}}</td>
-                        <td>{{c.creditos}}</td>
+                        <td>{{c.titulo}}</td>
+                        <td>{{c.precio}}</td>
+                        <td>{{c.cantidad}}</td>
+                        <td>{{c.unidad}}</td>
+                        <td>{{c.categoria}}</td>
+<!--                    <td>{{c.fechaCosecha}}</td>     
+
+
+-->                     <td>{{c.descripcion}}</td>
                         <td><a href="edicionPublicacion/{{c.codigo}}" class="btn btn-info">Editar</a></td>
                         <td><a href="eliminarPublicacion/{{c.codigo}}" class="btn btn-danger btnEliminacion">Eliminar</a></td>
                     </tr>
