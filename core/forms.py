@@ -14,11 +14,3 @@ class CustomUserCreationForm(UserCreationForm):
 		if User.objects.filter(email=email).exists():
 			raise forms.ValidationError('Este correo electrónico ya está registrado')
 		return email
-
-# En tu_aplicacion/forms.py
-from .models import Publicacion
-
-class PublicacionForm(forms.ModelForm):
-    class Meta:
-        model = Publicacion
-        fields = ['titulo', 'precio', 'cantidad', 'opciones', 'descripcion']

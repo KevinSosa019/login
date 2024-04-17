@@ -1,30 +1,76 @@
 {% extends 'core/base.html' %}
-
 {% block content %}
-<div class="bg-fondo">
+
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+
+        <!--Mensajes emergentes-->
+        {% if messages %}
+            {% for message in messages %}
+                <div id="message-{{ forloop.counter }}" class="alert alert-dismissible alert-success">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong class="text-dark">{{ message }}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <script>
+            setTimeout(function() {
+                document.querySelectorAll('[id^="message-"]').forEach(function(element) {
+                    element.remove();
+                });
+            }, 5000); // 5000 milisegundos = 5 segundos
+        </script>
+
+        <h2>Gestión de publicacion</h2>
         <div class="card">
-            <h6 class="fw-bold text-center py-3">Nueva Publicacion</h6>
-            <form class="col py-2" method="POST">
-                {% csrf_token %}
-                <div class="col px-3">
-                    {{ form.as_p }}
-                </div>
-                <button type="submit" class="btn bg-verde_menta text-light vstack mx-auto">Publicar</button>
-            </form>
-        </div>
-    </div>
-    <div class="col-md-8 ms-auto">
-        <div class="card w-75 h-75">
-            <div class="container-fluid">
-                <img class="d-block h-75" src="/media/logo.png" alt="Algo salio mal">
-                <div class="position-absolute top-100 w-100">
-                    <input class="form-control mt-3" type="file" id="formFileMultiple" multiple>
-                </div>
+            <div class="card-body">
+                <form action="/registrarPublicacion/" method="POST">{% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" id="txtCodigo" name="txtCodigo" class="form-control" placeholder="Código"
+                            minlength="6" maxlength="6" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="txtNombre" name="txtNombre" class="form-control" placeholder="Nombre"
+                            maxlength="50" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="numCreditos" name="numCreditos" class="form-control" min="1" max="9"
+                            value="1" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
+    <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+        <h1>Listado de publicaciones</h1>
+        <div class="table-responsive py-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Código</th>
+                        <th>Nombre</th>
+                        <th>Créditos</th>
+                        <th colspan="2">Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in publicaciones %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{c.codigo}}</td>
+                        <td>{{c.nombre}}</td>
+                        <td>{{c.creditos}}</td>
+                        <td><a href="edicionPublicacion/{{c.codigo}}" class="btn btn-info">Editar</a></td>
+                        <td><a href="eliminarPublicacion/{{c.codigo}}" class="btn btn-danger btnEliminacion">Eliminar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 {% endblock %}

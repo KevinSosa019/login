@@ -3,10 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from .forms import CustomUserCreationForm
 from django.contrib.auth import authenticate, login
-
-from .forms import PublicacionForm
 from .models import Publicacion
-
+from django.contrib import messages
 
 # Create your views here.
 def home(request):
@@ -17,9 +15,6 @@ def nosotros(request):
 
 def perfil(request):
     return render(request, 'core/perfil.html')
-
-def publicar(request):
-    return render(request, 'Venta/PublicarVenta.html')
 
 def Ventas_Publicadas(request):
     return render(request, 'Venta/VentasPublicadas.html')
@@ -51,18 +46,45 @@ def register(request):
 
     return render(request, 'registration/register.html', data)
 
-#nuevo
-# En tu_aplicacion/views.py
+
+#1era
+def publicar(request):
+    publicacionesListados = Publicacion.objects.all()
+    messages.success(request, 'Publicacion listada!')
+    return render(request, "Venta/PublicarVenta.html", {"publicaciones": publicacionesListados})
+#2da
+def registrarPublicacion(request):
+    codigo = request.POST['txtCodigo']
+    nombre = request.POST['txtNombre']
+    creditos = request.POST['numCreditos']
+
+    publicacion = Publicacion.objects.create(
+        codigo=codigo, nombre=nombre, creditos=creditos)
+    messages.success(request, 'Publicacion registrada!')
+    return redirect('/publicar')
+
+def edicionPublicacion(request, codigo):
+    publicacion = Publicacion.objects.get(codigo=codigo)
+    return render(request, "Venta/edicionPublicacion.html", {"publicacion": publicacion})
 
 
-def publicarVenta(request):
-    if request.method == 'POST':
-        form = PublicacionForm(request.POST)
-        if form.is_valid():
-            form.save()
-            # Puedes redirigir a una página de éxito o mostrar un mensaje de éxito aquí
-            return redirect('/')  # Cambia 'ruta_de_redireccion' por la URL a la que deseas redirigir después de guardar la publicación
-    else:
-        form = PublicacionForm()
-    return render(request,'Venta/publicarVenta.html', {'form': form})
+def editarPublicacion(request):
+    codigo = request.POST['txtCodigo']
+    nombre = request.POST['txtNombre']
+    creditos = request.POST['numCreditos']
 
+    publicacion = Publicacion.objects.get(codigo=codigo)
+    publicacion.nombre = nombre
+    publicacion.creditos = creditos
+    publicacion.save()
+
+    messages.success(request, 'Publicacion actualizada!')
+    return redirect('/publicar')
+
+
+def eliminarPublicacion(request, codigo):
+    publicacion = Publicacion.objects.get(codigo=codigo)
+    publicacion.delete()
+
+    messages.success(request, 'Publicacion eliminada!')
+    return redirect('/publicar')
