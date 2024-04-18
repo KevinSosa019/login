@@ -10,7 +10,7 @@
   <form class= "py-3" action="" method="post">
       {% csrf_token %}
 
-      <div class="card mx-auto login">
+      <div class="card mx-auto login col-md-6">
         <div class="card-body">
           <h5 class="card-title">Ingrese sus Credenciales</h5>
           {{ form | crispy }}

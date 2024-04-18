@@ -64,12 +64,16 @@
                 {% endif %}
               </ul>
             </div>
-            <form class="d-flex justify-content-end"> <!-- Alineación al final -->
+            <!--Boton de Buscar  -->
+            <form id="searchForm" class="d-flex justify-content-end" action="{% url 'buscar' %}" method="GET"> <!-- Alineación al final -->
               <button class="btn btn-outline-success bg-dark" type="submit"> <!-- Color de fondo negro -->
                   <i class="fa fa-search" style="color: white;"></i> <!-- Color del icono blanco -->
-                  <!-- Si prefieres un texto alternativo para accesibilidad, puedes agregarlo aquí -->
+                  <li class="nav-item">
+                    <a class="nav-link text-light"></a>
+                  </li>
               </button>
             </form>
+            
             
           </div>
         </nav>

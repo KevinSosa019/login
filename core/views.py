@@ -6,11 +6,17 @@ from django.contrib.auth import authenticate, login
 from .models import Publicacion
 from django.contrib import messages
 from datetime import datetime
+from django.db.models import Q
+
 
 
 # Create your views here.
+
+#Mostrar las publicaiones al inicio 
 def home(request):
-    return render(request, 'core/home.html')
+    publicacionesListados = Publicacion.objects.all()
+    return render(request, "core/home.html", {"publicaciones": publicacionesListados})
+
 
 def nosotros(request):
     return render(request, 'core/nosotros.html')
@@ -114,3 +120,22 @@ def eliminarPublicacion(request, codigo):
 
     messages.success(request, 'Publicacion eliminada!')
     return redirect('/publicar')
+
+#Buscar
+def buscar(request):
+    publicacionesListados = Publicacion.objects.all()
+    return render(request, "core/buscar.html", {"publicaciones": publicacionesListados})
+
+def busquedaPublicaciones(request):
+    busqueda = request.POST.get("buscar")
+    publicacionesListados = Publicacion.objects.all()
+
+    if busqueda:
+        publicacionesListados = Publicacion.objects.filter(
+            Q(titulo__icontains = busqueda) | 
+            Q(categoria__icontains = busqueda)  
+        ).distinct()
+         
+
+    return render(request, 'busqueda.html', {'busqueda':busqueda})
+
