@@ -8,36 +8,57 @@
             <div class="card-body">
                 <form action="/editarPublicacion/" method="POST">{% csrf_token %}
 
-                    <div class="form-group">
+
+                    <div class="form-group mb-4">
+                        <label for="txtCodigo">Codigo:</label>
                         <input type="text" id="txtCodigo" name="txtCodigo" value="{{publicacion.codigo}}" class="form-control" placeholder="Código"
                             minlength="6" maxlength="6" readonly required>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group mb-4">
+                        <label for="txtTitulo">Titulo:</label>
                         <input type="text" id="txtTitulo" name="txtTitulo" value="{{publicacion.titulo}}" class="form-control" placeholder="Titulo"
                             maxlength="50" required>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group mb-4">
+                        <label for="numPrecio">Precio:</label>
                         <input type="text" id="numPrecio" name="numPrecio" value="{{publicacion.precio}}" class="form-control" min="1" max="9"
                             value="1" required>
                     </div>
 
-                    <div class="form-group">
-                        <input type="text" id="numCantidad" name="numCantidad" value="{{publicacion.cantidad}}" class="form-control" min="1" max="9"
-                            value="1" required>
-                    </div>
+                    <div class="input-group mb-4">
+                        <div style="display: flex; flex-direction: column;">
 
-                    <div class="form-group">
-                        <input type="text" id="txtUnidad" name="txtUnidad" value="{{publicacion.unidad}}" class="form-control" min="1" max="9"
-                            value="1" required>
+                            <label for="numCantidad">Cantidad del Producto:</label>
+                            <input type="text" id="numCantidad" name="numCantidad" value="{{publicacion.cantidad}}" class="form-control" min="1" max="9"
+                                value="1" required  placeholder="Cantidad" aria-label="Cantidad" /> 
+                        </div>    
+                        <div style="display: flex; flex-direction: column;">
+                            <label for="txtUnidad">Unidad:</label>
+                            <select type="text" class="form-select" id="txtUnidad" name="txtUnidad" value="{{publicacion.unidad}}" class="form-control" min="1" max="9"
+                                value="1" required>
+                                <option selected>Unidad</option>
+                                <option value="Kg">Kg</option>
+                                <option value="g">g</option>
+                                <option value="L">L</option>
+                            </select>
+                        </div>
                     </div>
+                    
 
-                    <div class="form-group">
-                        <input type="text" id="txtCategoria" name="txtCategoria" value="{{publicacion.categoria}}" class="form-control" min="1" max="9"
+                   
+
+                    <div class="form-group mb-4">
+                        <label for="txtCategoria">Categoria:</label>
+                        <select type="text" class="form-select" id="txtCategoria" name="txtCategoria" value="{{publicacion.categoria}}" class="form-control" min="1" max="9"
                             value="1" required>
+                            <option selected>Ingrese una opcion</option>
+                            <option value="Vegetales">Vegetales</option>
+                            <option value="Frutas">Frutas</option>
+                            <option value="Hierbas">Hierbas</option>
+                        </select>
                     </div>
-
                     
                     <!--
                     <div class="input-group mt-3" >
@@ -45,14 +66,13 @@
                         <input type="date" id="DateFechaCosecha" name="DateFechaCosecha" value="{{publicacion.fechaCosecha}}" class="form-control" placeholder="Fecha" aria-label="Fecha">
                     </div>-->
                     
-                    
-
-                    <div class="form-group">
-                        <input type="text" id="txtDescripcion" name="txtDescripcion" value="{{publicacion.descripcion}}" class="form-control" min="1" max="9"
-                            value="1" required>
+                    <div class="form-group mb-4">
+                        <label for="txtDescripcion">Descripcion:</label>
+                        <textarea type="text" id="txtDescripcion" name="txtDescripcion" value="{{publicacion.descripcion}}" class="form-control" min="1" max="9"
+                            value="1" required></textarea>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group mb-4">
                         <button type="submit" class="btn btn-success btn-block text-white">Guardar</button>
                     </div>
 

@@ -18,8 +18,6 @@ def nosotros(request):
 def perfil(request):
     return render(request, 'core/perfil.html')
 
-def Ventas_Publicadas(request):
-    return render(request, 'Venta/VentasPublicadas.html')
 
 """@login_required
 def products(request):
@@ -49,7 +47,7 @@ def register(request):
     return render(request, 'registration/register.html', data)
 
 
-#1era
+#1Publicaciones
 def publicar(request):
     publicacionesListados = Publicacion.objects.all()
     messages.success(request, 'Publicacion listada!')

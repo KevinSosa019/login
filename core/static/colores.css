@@ -28,3 +28,18 @@
     background: linear-gradient(to top, #061700, #52c234); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     
 }
+
+
+.carousel-item img {
+    max-width: 100%;
+    height: auto;
+}
+
+.carousel-item img {
+    margin: auto; /* Centra horizontalmente las imágenes */
+}
+
+.img-pequena {
+    width: 50%; /* Ajusta el ancho de la imagen según lo necesites */
+    height: auto; /* Mantén la proporción de aspecto */
+}

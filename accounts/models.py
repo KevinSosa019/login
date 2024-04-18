@@ -36,16 +36,3 @@ def save_user_profile(sender, instance, **kwargs):
 post_save.connect(create_user_profile, sender=User)
 post_save.connect(save_user_profile, sender=User)
 
-
-#nuevo 
-# En el archivo models.py de tu aplicación
-"""
-class Curso(models.Model):
-    codigo = models.CharField(primary_key=True, max_length=6)
-    nombre = models.CharField(max_length=50)
-    creditos = models.PositiveSmallIntegerField()
-    
-    def __str__(self):
-        texto = "{0} ({1})"
-        return texto.format(self.nombre, self.creditos)
-"""

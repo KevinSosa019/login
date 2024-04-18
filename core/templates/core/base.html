@@ -9,6 +9,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/static/colores.css">
     <link rel="stylesheet" href="{% static 'css/gestionCursos.css' %}">
+    <link rel="stylesheet" href="core/static/colores.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 
 
     <title>Ecojusta</title>
@@ -28,7 +31,6 @@
               <ul class="navbar-nav">
                 <li class="nav-item">
                   <a class="nav-link text-light" href={% url 'nosotros' %}>Quiénes somos</a>
-                  
                 </li>
 
                 {% if request.user.is_authenticated %}
@@ -40,13 +42,13 @@
                       <ul class="dropdown-menu">
                         <li><a class="dropdown-item " href={% url 'perfil' %}>Perfil</a></li>
                         <li><a class="dropdown-item" href={% url 'publicar' %}>Publicar Venta</a></li>
-                        <li><a class="dropdown-item" href={% url 'Ventas_Publicadas'%}>Ventas publicadas</a></li>
                       </ul>
                     </div>
                   </li>
                     <li class="nav-item">
                         <a class="nav-link text-light" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">Salir</a>
                     </li>
+                  
                     
                 {% else %}
                     <li class="nav-item">
@@ -55,9 +57,20 @@
                     <li class="nav-item">
                         <a class="nav-link text-light" href={% url 'register' %}>Registrarse</a>
                     </li>
+
+               
+                  
+
                 {% endif %}
               </ul>
             </div>
+            <form class="d-flex justify-content-end"> <!-- Alineación al final -->
+              <button class="btn btn-outline-success bg-dark" type="submit"> <!-- Color de fondo negro -->
+                  <i class="fa fa-search" style="color: white;"></i> <!-- Color del icono blanco -->
+                  <!-- Si prefieres un texto alternativo para accesibilidad, puedes agregarlo aquí -->
+              </button>
+            </form>
+            
           </div>
         </nav>
     {% block content %}{% endblock %}
