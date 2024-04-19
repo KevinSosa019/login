@@ -11,8 +11,12 @@ class Publicacion(models.Model):
     unidad = models.CharField(max_length=10, choices=[('Kg', 'Kg'), ('g', 'g'), ('L', 'L')], default='Kg')  
     categoria = models.CharField(max_length=100, choices=[('Vegetales', 'Vegetales'), ('Frutas', 'Frutas'), ('Hierbas', 'Hierbas')], default='Vegetales')  # Ejemplo de valor predeterminado
   #  fechaCosecha = models.DateField(default=date.today)
- 
     descripcion = models.TextField(default='Descripción predeterminada')  
+    
+    class Meta:
+      verbose_name = 'Publicacion'
+      verbose_name_plural = 'Publicaciones'
+      ordering = ['codigo']
 
     def __str__(self):
         texto = "{0} ({1})"

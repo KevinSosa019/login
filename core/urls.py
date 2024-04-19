@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home, nosotros, register, exit, perfil, publicar ,buscar
+from .views import home, nosotros, register, exit, perfil, publicar
 from . import views
 
 
@@ -21,8 +21,8 @@ urlpatterns = [
     
     #Buscar
 # URLs en tu archivo urls.py
-    path('buscar/', views.buscar, name='buscar'),  # Usa un nombre de URL único para esta vista
-    path('buscar/', views.busquedaPublicaciones, name='buscar'),
+    path('buscar/', views.listarPublicacion, name='buscar'),  # Usa un nombre de URL único para esta vista
+  #  path('buscar/', views.busquedaPublicaciones, name='buscar'),
     
     
 

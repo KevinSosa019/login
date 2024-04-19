@@ -122,20 +122,21 @@ def eliminarPublicacion(request, codigo):
     return redirect('/publicar')
 
 #Buscar
-def buscar(request):
-    publicacionesListados = Publicacion.objects.all()
-    return render(request, "core/buscar.html", {"publicaciones": publicacionesListados})
+#def buscar(request):
+ #   publicacionesListados = Publicacion.objects.all()
+  #  return render(request, "core/buscar.html", {"publicaciones": publicacionesListados})
 
-def busquedaPublicaciones(request):
+
+def listarPublicacion(request):
     busqueda = request.POST.get("buscar")
-    publicacionesListados = Publicacion.objects.all()
+    publicaciones = Publicacion.objects.all()
 
     if busqueda:
-        publicacionesListados = Publicacion.objects.filter(
+        publicaciones = Publicacion.objects.filter(
             Q(titulo__icontains = busqueda) | 
-            Q(categoria__icontains = busqueda)  
+            Q(categoria__icontains = busqueda)
         ).distinct()
          
 
-    return render(request, 'busqueda.html', {'busqueda':busqueda})
+    return render(request, 'core/buscar.html', {'publicaciones':publicaciones})
 
