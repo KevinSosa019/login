@@ -7,6 +7,7 @@ from .models import Publicacion
 from django.contrib import messages
 from datetime import datetime
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -54,33 +55,39 @@ def register(request):
 
 
 #1Publicaciones
+@login_required
 def publicar(request):
-    publicacionesListados = Publicacion.objects.all()
+    publicacionesListados = Publicacion.objects.filter(usuario=request.user)
     messages.success(request, 'Publicacion listada!')
     return render(request, "Venta/PublicarVenta.html", {"publicaciones": publicacionesListados})
-#2da
-def registrarPublicacion(request):
-    codigo = request.POST['txtCodigo']
-    titulo = request.POST['txtTitulo']
-    precio = request.POST['numPrecio']
-    
-    cantidad = request.POST['numCantidad']
-    unidad = request.POST['txtUnidad']
-    categoria = request.POST['txtCategoria']
-  #  fechaCosecha = request.POST['DateFechaCosecha'] 
-    descripcion = request.POST['txtDescripcion']
-    
 
-    publicacion = Publicacion.objects.create(
-        codigo=codigo, 
-        titulo=titulo, 
-        precio=precio,
-        cantidad=cantidad,
-        unidad=unidad,
-        categoria=categoria,
-   #     fechaCosecha=fechaCosecha,
-        descripcion=descripcion   )
-    
+#2da
+@login_required
+def registrarPublicacion(request):
+    if request.method == 'POST':
+        codigo = request.POST['txtCodigo']
+        titulo = request.POST['txtTitulo']
+        precio = request.POST['numPrecio']
+        cantidad = request.POST['numCantidad']
+        unidad = request.POST['txtUnidad']
+        categoria = request.POST['txtCategoria']
+    #  fechaCosecha = request.POST['DateFechaCosecha'] 
+        descripcion = request.POST['txtDescripcion']
+        
+        # Obtener el usuario autenticado
+        usuario = request.user
+
+        publicacion = Publicacion.objects.create(
+            usuario=usuario,
+            codigo=codigo, 
+            titulo=titulo, 
+            precio=precio,
+            cantidad=cantidad,
+            unidad=unidad,
+            categoria=categoria,
+    #     fechaCosecha=fechaCosecha,
+            descripcion=descripcion   )
+        
   
     messages.success(request, 'Publicacion registrada!')
     return redirect('/publicar')
@@ -122,11 +129,6 @@ def eliminarPublicacion(request, codigo):
     return redirect('/publicar')
 
 #Buscar
-#def buscar(request):
- #   publicacionesListados = Publicacion.objects.all()
-  #  return render(request, "core/buscar.html", {"publicaciones": publicacionesListados})
-
-
 def listarPublicacion(request):
     busqueda = request.POST.get("buscar")
     publicaciones = Publicacion.objects.all()

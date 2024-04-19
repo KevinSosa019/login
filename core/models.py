@@ -1,9 +1,11 @@
 
 from django.db import models
+from django.contrib.auth.models import User
 from datetime import date
 
 # Create your models here.
 class Publicacion(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     codigo = models.CharField(primary_key=True, max_length=6)
     titulo = models.CharField(max_length=100, default='Título Predeterminado')
     precio = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
