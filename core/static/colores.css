@@ -2,7 +2,7 @@
 :root {
     --primario: #026a04;
     --secundario: #0CA789;
-    --tercero: #52c234;
+    --tercero: #242523;
     --cuarto: #0f9b0f;
 }
 
@@ -23,19 +23,22 @@
 }
 
 .bg-fondo{
-    background: #52c234;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to top, #061700, #52c234);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to top, #061700, #52c234); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #52c234;
+    background: -webkit-linear-gradient(to top,  #52c234, #606e5b);
+    background: linear-gradient(to top,#52c234,#285dd8b1);
    
 }
 
 .bg-fondo-white{
-    background-color: grey; /* Utilizando el nombre de color */
+    background: -webkit-linear-gradient(to top, #2f10dd, #287512);
+    background: linear-gradient(to top, #285dd8b1, #53c234cf);
+    border-radius: 10px; /* Bordes redondeados para suavizar la apariencia */
 }
 
 
-
 .carousel-item img {
+    background-color: #e5ddd4fa;
+    color: brown;
     max-width: 100%;
     height: auto;
 }
@@ -48,3 +51,4 @@
     width: 50%; /* Ajusta el ancho de la imagen según lo necesites */
     height: auto; /* Mantén la proporción de aspecto */
 }
+

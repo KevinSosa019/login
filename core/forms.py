@@ -1,4 +1,5 @@
 from django import forms
+from .models import Mensaje
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -14,3 +15,12 @@ class CustomUserCreationForm(UserCreationForm):
 		if User.objects.filter(email=email).exists():
 			raise forms.ValidationError('Este correo electrónico ya está registrado')
 		return email
+	
+class MensajeForm(forms.ModelForm):
+    class Meta:
+        model = Mensaje
+        fields = ['destinatario', 'mensaje']
+
+class DenunciaForm(forms.Form):
+    usuario_denunciado = forms.IntegerField(widget=forms.HiddenInput())
+    razon = forms.CharField(widget=forms.Textarea)
