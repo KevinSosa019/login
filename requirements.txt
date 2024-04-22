@@ -9,36 +9,3 @@ pillow==10.3.0
 pip==24.0
 
 
-@login_required
-def registrarPublicacion(request):
-    if request.method == 'POST':
-        codigo = request.POST['txtCodigo']
-        titulo = request.POST['txtTitulo']
-        precio = request.POST['numPrecio']
-        cantidad = request.POST['numCantidad']
-        unidad = request.POST['txtUnidad']
-        categoria = request.POST['txtCategoria']
-        # fechaCosecha = request.POST['DateFechaCosecha'] 
-        descripcion = request.POST['txtDescripcion']
-        
-        # Obtener el usuario autenticado
-        usuario = request.user
-        
-        # Crear la publicación asociada al usuario actual
-        publicacion = Publicacion.objects.create(
-            usuario=usuario,
-            codigo=codigo, 
-            titulo=titulo, 
-            precio=precio,
-            cantidad=cantidad,
-            unidad=unidad,
-            categoria=categoria,
-            # fechaCosecha=fechaCosecha,
-            descripcion=descripcion
-        )
-        
-        messages.success(request, 'Publicacion registrada!')
-        return redirect('/publicar')
-    else:
-        return render(request, 'tu_template.html')  # Ajusta la ruta al template que corresponda
-
